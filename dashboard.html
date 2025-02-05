@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        .country-select {
+            border: none;
+            padding: 5px;
+            background: transparant;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            
+            height: 30px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+		<img class="logo" src="Novalogo.jpg" alt="SellerNova"> 
+		<div class="logo-yazi">
+		<h3>Seller <br> Nova</h3>
+	</div>
+        <!-- Arama Çubuğu -->
+        <div class="search-box">
+            <input type="text" placeholder="Ara..." size="36px">
+    </div>
+
+        <!-- Sağ Taraf - Bildirim, Ülke Seçimi, İkonlar -->
+        <div class="navbar">
+            <div class="notification">
+				<img src="bildirim-simge" alt="Notifications">
+                <span class="notification-number">58</span>
+        </div>
+            <select class="country-select">
+                <option>Ülke Adı</option>
+            </select>
+			<img src="calculator" alt="Hesap makinesi">
+            <img src="user-avatar.jpg" alt="Profil" class="user-avatar">
+        </div>
+    </nav>
+</body>
+</html>

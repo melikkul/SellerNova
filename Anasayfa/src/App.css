@@ -1,0 +1,57 @@
+/* Google Fonts - Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Font */
+  --font-primary: 'Montserrat', sans-serif;
+
+  /* Genel Arka Plan Renkleri */
+  --background-light: #FFFFFF;
+  --background-gray: #F7FAFC;
+  --background-dark: #2D3748;
+
+  /* Ana Renkler */
+  --primary-color: #2C7A7B; /* Ana renk */
+  --secondary-color: #319795; /* Vurgu rengi */
+  --accent-color: #38A169; /* Başarı ve onay tonu */
+
+  /* Metin Renkleri */
+  --text-dark: #2D3748;
+  --text-medium: #4A5568;
+  --text-light: #A0AEC0;
+
+  /* Kenar Çizgileri */
+  --border-light: #CBD5E0;
+  --border-medium: #A0AEC0;
+  --border-dark: #2D3748;
+
+  /* Hover ve Etkileşim Renkleri */
+  --hover-light: #E6F2F5;
+  --hover-dark: #319795;
+
+  /* Durum Renkleri */
+  --success-color: #38A169; /* Başarı rengi (Yeşil) */
+  --warning-color: #F6AD55; /* Uyarı rengi (Turuncu) */
+  --error-color: #E53E3E; /* Hata ve kritik durum rengi (Kırmızı) */
+
+  /* Pie Chart İçin Renkler */
+  --pie-critical: #E53E3E; /* Kırmızı (0-100) */
+  --pie-warning: #F6AD55; /* Turuncu (100-200) */
+  --pie-healthy: #38A169; /* Yeşil (200-1000) */
+
+  /* Buton Renkleri */
+  --button-primary-bg: #2C7A7B;
+  --button-primary-text: #FFFFFF;
+  --button-hover-bg: #276749;
+  --button-hover-text: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.Anasayfa {
+    background: var(--background-light)
+    
+}

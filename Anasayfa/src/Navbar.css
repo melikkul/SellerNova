@@ -48,14 +48,17 @@
 
 
 .Navbar{
+    position: fixed; /* Kaydırınca en üstte sabit kalacak */
+    top: 0; /* Sayfanın en üstüne yapışmasını sağlıyor */
+    left: 0;
+    width: 100%; /* Sayfanın tamamını kaplasın */
+    background-color: var(--background-light);
+    z-index: 1000; /* Diğer öğelerin üzerinde kalmasını sağlıyor */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    position: relative;
-    background-color: var(--background-light);
-    flex-direction: column  ;
-    margin-left: -200px;
+    flex-direction: column;
 }
 
 .Navbar .container {
@@ -130,6 +133,7 @@
 
 
 .Navbar button {
+    cursor: pointer;
     display: flex;
     background-color: var(--background-light);
     width: 175px;

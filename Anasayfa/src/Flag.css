@@ -1,0 +1,23 @@
+@keyframes slideLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.flags-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Taşmaları önlemek için */
+  width: 100%;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  white-space: nowrap;
+  animation: slideLeft 10s linear infinite; /* 10 saniyede sonsuz döngü */
+}

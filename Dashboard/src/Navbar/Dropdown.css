@@ -9,8 +9,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 280px;
-    height: 60px;
+    width: 340px;
+    height: 70px;
     padding: 9px 13px;
     border-radius: 20px;
     border: 1px solid #E2E8F0;
@@ -24,14 +24,14 @@
 
 .dropdown-button p {
     font-family: var(--font-primary);
-    font-size: 15px;
+    font-size: 22px;
     font-weight: 400;
 }
 
 /* Bayrak ikonları */
 .dropdown-flag {
     width: auto;
-    height: 24px;
+    height: 35px;
     border-radius: 5px;
     object-fit: cover;
 }
@@ -39,6 +39,7 @@
 /* Aç/Kapa ikonu */
 .dropdown-icon-right {
     transition: transform 0.3s ease-in-out;
+    width: 50px;
 }
 
 .dropdown-icon-right.rotate {
@@ -52,11 +53,11 @@
     background: white;
     border: 1px solid #ccc;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 280px;
-    top: 65px;
+    width: 340px;
+    top: 85px;
     left: 0;
     border-radius: 20px;
-    max-height: 220px;
+    max-height: 280px;
     overflow-y: auto; /* Sadece dikey scroll olacak */
     overflow-x: hidden; /* Yatay scroll tamamen kaldırıldı */
     padding-right: 0; /* Scrollbar içeri taşmasın */
@@ -99,4 +100,65 @@
     font-size: 14px;
     color: gray;
     margin-top: 5px;
+}
+
+@media screen and (max-width: 1920px) {
+
+}
+
+@media screen and (max-width: 1440px) {
+    .dropdown-container {
+        position: relative;
+        display: inline-block;
+        margin-left: -20px;
+    }
+    .dropdown-button {
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+        height: 50px;
+        padding-right: 30px;
+        gap: 18px;
+    }
+    .dropdown-button p {
+        font-family: var(--font-primary);
+        font-size: 17px;
+        font-weight: 400;
+    }
+    .dropdown-flag {
+        width: 40px;
+        height: 22px;
+        border-radius: 5px;
+        object-fit: cover;
+        gap: 10px;
+    }
+    .dropdown-icon-right {
+        width: 35px;
+    }
+    .dropdown-menu {
+        width: 200px;
+        top: 60px;
+        left: 0;
+        max-height: 170px;
+        box-sizing: border-box;
+        
+    }
+    .dropdown-item {
+        gap: 18px;
+        padding: 10px;
+        width: 35px;
+        cursor: pointer;
+        
+    }
+    .dropdown-menu::-webkit-scrollbar {
+        width: 4px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+
 }

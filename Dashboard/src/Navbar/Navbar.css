@@ -5,90 +5,191 @@
     width: 100%;
     z-index: 1000;
     display: flex;
-    gap: 50px;
-    background: var(--background-light);
+    justify-content: space-between;  /* Öğeleri yatayda düzenler */
     align-items: center;
+    background: var(--background-light);
     border: 1px solid #E2E8F0;
-    padding: 10px;
+    padding: 10px 30px;
+    gap: 20px;
 }
 
-.navbar .logo{
-    display:flex;
+.navbar .logo {
+    display: flex;
     cursor: pointer;
-    margin-left: 73px;
     gap: 10px;
 }
 
-.navbar .logo img{
-    width: 80px;
+.navbar .logo img {
+    width: 100px;
     height: auto;
 }
-.navbar .logo h1{
+
+.navbar .logo h1 {
     font-family: var(--font-primary);
-    font-size: 32px;
-    font-style: normal;
+    font-size: 42px;
     font-weight: 400;
-    flex-direction: column;
+}
+
+.navbar .search-container {
+    flex: 1;
+    display: flex;
     justify-content: center;
 }
 
-.navbar .search-input{
-    width: 800px;
+.navbar .search-input {
+    width: 60%;
     height: 60px;
-    flex-shrink: 0;
     border-radius: 30px;
     border: 1px solid #E2E8F0;
     background: #F7FAFC;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: var(--font-primary);
     font-size: 14px;
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 .navbar .search-input:focus {
     outline: none;
 }
 
-.navbar .notification{
-    border: none;
-    background: white;
-    cursor: pointer;
+.navbar .icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-
-.language{
-    width: 60px;
-    height: 60px;
-    border-radius: 20px;
+.language,
+.calculator,
+.profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
     border: 1px solid #E2E8F0;
     background: #fff;
-    margin-left: -30px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.calculator{
-    width: 60px;
-    height: 60px;
-    background: #fff;
-    border: none;
-    stroke-width: 1px;
-    stroke: #E2E8F0;
-    margin-left: -15px;
-    cursor: pointer;
+.calculator img,
+.language img,
+.profile img {
+    width: 40px;
+    height: 40px;
 }
 
-.calculator img{
-    width: 60px;
-    height: 60px;
-    
+/* ✅ 1920px için */
+@media screen and (max-width: 1920px) {
+    .navbar {
+        padding: 15px 40px;
+        gap: 30px;
+    }
+
+    .navbar .logo img {
+        width: 120px;
+    }
+
+    .navbar .logo h1 {
+        font-size: 45px;
+    }
+
+    .navbar .search-input {
+        width: 70%;
+        height: 70px;
+        font-size: 16px;
+    }
+
+    .language,
+    .calculator,
+    .profile {
+        width: 55px;
+        height: 55px;
+    }
 }
 
-.profile{
-    background: var(--background-light);
-    border:none;
-    border-radius: 60px;
-    border: 1px solid #E2E8F0;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  
-    cursor: pointer;  
+/* ✅ 1440px - 1280px Arası */
+@media screen and (max-width: 1440px) {
+    .navbar {
+        padding: 10px 20px;
+        gap: 10px;
+    }
+
+    .navbar .logo img {
+        width: 80px;
+    }
+
+    .navbar .logo h1 {
+        font-size: 30px;
+    }
+
+    .navbar .search-input {
+        width: 50%;
+        height: 50px;
+        font-size: 13px;
+    }
+
+    .language,
+    .calculator,
+    .profile {
+        width: 45px;
+        height: 45px;
+    }
 }
 
+/* ✅ 1280px - 1024px Arası */
+@media screen and (max-width: 1280px) {
+    .navbar .logo img {
+        width: 70px;
+    }
+
+    .navbar .logo h1 {
+        font-size: 28px;
+    }
+
+    .navbar .search-input {
+        width: 40%;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .language,
+    .calculator,
+    .profile {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ✅ 1024px Altında */
+@media screen and (max-width: 1024px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .navbar .logo {
+        justify-content: center;
+    }
+
+    .navbar .search-container {
+        width: 100%;
+    }
+
+    .navbar .search-input {
+        width: 80%;
+        height: 40px;
+    }
+
+    .navbar .icons {
+        gap: 5px;
+    }
+
+    .language,
+    .calculator,
+    .profile {
+        width: 35px;
+        height: 35px;
+    }
+}

@@ -1,0 +1,102 @@
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button {
+    background: var(--background-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 280px;
+    height: 60px;
+    padding: 9px 13px;
+    border-radius: 20px;
+    border: 1px solid #E2E8F0;
+    gap: 10px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-button:hover {
+    background-color: #f8f8f8;
+}
+
+.dropdown-button p {
+    font-family: var(--font-primary);
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* Bayrak ikonları */
+.dropdown-flag {
+    width: auto;
+    height: 24px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+/* Aç/Kapa ikonu */
+.dropdown-icon-right {
+    transition: transform 0.3s ease-in-out;
+}
+
+.dropdown-icon-right.rotate {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menüsü */
+.dropdown-menu {
+    font-family: var(--font-primary);
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    top: 65px;
+    left: 0;
+    border-radius: 20px;
+    max-height: 220px;
+    overflow-y: auto; /* Sadece dikey scroll olacak */
+    overflow-x: hidden; /* Yatay scroll tamamen kaldırıldı */
+    padding-right: 0; /* Scrollbar içeri taşmasın */
+    margin-right: -6px; /* Scrollbar’ın sağa kaymasını engeller */
+    box-sizing: border-box;
+    clip-path: inset(0px round 20px); /* Scrollbar'ın border-radius içinde kalmasını sağlar */
+}
+
+/* Scroll çubuğu */
+.dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 20px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 20px;
+}
+
+/* Dropdown içindeki her seçenek */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    width: 100%;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Yüklenme durumu */
+.loading-text {
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+    margin-top: 5px;
+}

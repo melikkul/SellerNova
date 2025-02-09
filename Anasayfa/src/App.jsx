@@ -136,19 +136,36 @@ function App() {
         </h1>
         <div className="flags-container">
           {/* Üst satır */}
-          <div className="row">
-            {Array.from({ length: flagsPerRow }).map((_, index) => (
-              <Flag key={index} index={index} />
-            ))}
+          <div className="row-wrapper">
+            <div className="row">
+              {Array.from({ length: flagsPerRow }).map((_, index) => (
+                <Flag key={index} index={index} />
+              ))}
+            </div>
+            <div className="row">
+              {Array.from({ length: flagsPerRow }).map((_, index) => (
+                <Flag key={index + flagsPerRow} index={index} />
+              ))}
+            </div>
           </div>
 
-          {/* Alt satır */}
-          <div className="row">
-            {Array.from({ length: totalFlags - flagsPerRow }).map(
-              (_, index) => (
-                <Flag key={index + flagsPerRow} index={index + flagsPerRow} />
-              )
-            )}
+          {/* 🔥 Yeni eklenen alt satır */}
+          <div className="row-wrapper new-row">
+            <div className="row">
+              {Array.from({ length: totalFlags - flagsPerRow }).map(
+                (_, index) => (
+                  <Flag key={index + flagsPerRow} index={index + flagsPerRow} />
+                )
+              )}
+            </div>
+            {/* 🔥 İkinci satırın yeni kopyasını daha erkenden getirme */}
+            <div className="row" style={{ transform: "translateX(30%)" }}>
+              {Array.from({ length: totalFlags - flagsPerRow }).map(
+                (_, index) => (
+                  <Flag key={index + totalFlags} index={index + flagsPerRow} />
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>

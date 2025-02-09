@@ -1,6 +1,6 @@
 @keyframes slideLeft {
   from {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   to {
     transform: translateX(-100%);
@@ -8,16 +8,39 @@
 }
 
 .flags-container {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Taşmaları önlemek için */
+  overflow: hidden;
   width: 100%;
   position: relative;
+  gap: 50px; /* İki sıra arasındaki boşluğu belirle */
+  margin-bottom: 305px;
 }
 
 .row {
   display: flex;
-  gap: 10px;
+  gap: 50px; /* Bayraklar arasındaki boşluğu belirle */
   white-space: nowrap;
-  animation: slideLeft 10s linear infinite; /* 10 saniyede sonsuz döngü */
+  animation: slideLeft 10s linear infinite;
+}
+
+.row-wrapper {
+  display: flex;
+  width: fit-content;
+}
+
+/* 🔥 İkinci satırı sağa kaydırma */
+.new-row {
+  margin-left: 50px;
+}
+
+/* 🔥 İkinci satırın yeni bayrak sırasının zamanlamasını ayarlama */
+.new-row .row {
+  margin-left: 50px;
+  animation: slideLeft 15s linear infinite;
+}
+
+.new-row .row:last-child {
+  transform: translateX(50%); /* Başlangıç konumunu ileriye al */
 }

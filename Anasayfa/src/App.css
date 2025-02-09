@@ -80,7 +80,7 @@ body{
 .Anasayfa {
     background: var(--background-light);
     font-family: var(--font-primary); 
-    height: 500vh;  
+
 }
 /*=========================== PART 1 ================================*/
 .part1{

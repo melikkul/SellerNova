@@ -1,4 +1,5 @@
 .notification-container {
+    margin-left: -10px;
     position: relative;
     display: inline-block;
 }
@@ -12,7 +13,7 @@
 }
 
 .notification img {
-    width: 70px; /* 2560px için */
+    width: 80px; /* 2560px için */
     min-width: 40px; /* Küçülme limiti */
 }
 
@@ -20,9 +21,9 @@
 .notification-badge {
     cursor: pointer;
     position: absolute;
-    top: 5px;
+    top: 7px;
     right: 5px;
-    background-color: green;
+    background-color: var(--primary-color);
     color: white;
     font-size: 0.7vw; /* Oranlı küçülme */
     font-weight: bold;
@@ -148,13 +149,19 @@
 
 /* ✅ 1440px için */
 @media screen and (max-width: 1440px) {
+    .notification-container{
+        margin-left: 7px;
+    }
     .notification img {
-        width: 50px;
+        width: 45px;
     }
     .notification-badge {
-        font-size: 0.75vw;
-        width: 1.2vw;
-        height: 1.2vw;
+        top: 3px;
+        font-size: 0.55vw;
+        width: 1.1vw;
+        height: 1.1vw;
+        min-width: 15px; /* Küçülme limiti */
+        min-height: 15px;
     }
     .notification-menu {
         width: 11vw;
@@ -175,7 +182,7 @@
 /* ✅ 1280px için */
 @media screen and (max-width: 1280px) {
     .notification img {
-        width: 45px;
+        width: 40px;
     }
     .notification-badge {
         font-size: 0.7vw;
@@ -201,14 +208,16 @@
 /* ✅ 1024px için */
 @media screen and (max-width: 1024px) {
     .notification img {
-        width: 40px;
+        width: 33px;
+        min-width: 20px;
     }
     .notification-badge {
-        font-size: 0.8vw;
-        width: 1.5vw;
-        height: 1.5vw;
+        font-size: 0.7vw;
+        width: 1vw;
+        height: 1vw;
         min-width: 10px;
         min-height: 10px;
+        right: 1px;
     }
     .notification-menu {
         width: 9.5vw;

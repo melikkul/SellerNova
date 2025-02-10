@@ -11,7 +11,7 @@
     align-items: center;
     background: var(--background-light);
     border: 1px solid #E2E8F0;
-    padding: 20px 80px; /* Sağ ve sol boşluk arttırıldı */
+    padding: 8px 80px; /* Sağ ve sol boşluk arttırıldı */
     gap: 20px;
     flex-wrap: nowrap; /* Asla alt alta düşmeyecek */
     overflow: visible; /* Taşmaları önle */
@@ -31,14 +31,15 @@
 
 .navbar .logo img {
     width: 5vw;
-    min-width: 80px;
+    min-width: 70px;
+    max-width: 100px;
     height: auto;
 }
 
 .navbar .logo h1 {
     font-family: var(--font-primary);
-    line-height: 2.539vw;
-    font-size: 2vw;
+    line-height: 2vw;
+    font-size: 1.85vw;
     font-weight: 400;
     white-space: nowrap; /* Alt satıra düşmeyi engelle */
 }
@@ -55,15 +56,16 @@
 .navbar .search-input {
     width: 100%;
     min-width: 300px;
-    max-width: 1300px;
-    height: 60px;
-    border-radius: 30px;
+    max-width: 1075px;
+    height: 80px;
+    border-radius: 40px;
     border: 1px solid #E2E8F0;
     background: #F7FAFC;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: var(--font-primary);
     font-size: 1.2vw;
     padding-left: 20px;
+    margin-left: -20px;
 }
 
 .navbar .search-input:focus {
@@ -79,11 +81,11 @@
     flex-shrink: 0; /* Küçülmesini engelle */
 }
 
-.language, .calculator, .profile {
+.language{
     width: 3vw;
-    min-width: 50px;
+    min-width: 60px;
     height: 3vw;
-    min-height: 50px;
+    min-height: 60px;
     border-radius: 20px;
     border: 1px solid #E2E8F0;
     background: #fff;
@@ -95,31 +97,59 @@
 }
 
 .calculator {
+    width: 3vw;
+    min-width: 60px;
+    height: 3vw;
+    min-height: 60px;
+    border-radius: 20px;
+    border: 1px solid #E2E8F0;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
     padding: 25px;
 }
 
 .profile {
-    border-radius: 100px;
+    width: 3vw;
+    min-width: 70px;
+    height: 3vw;
+    min-height: 70px;
+    border-radius: 50%;  /* Çember yapmak için */
+    border: 1px solid #E2E8F0;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;  /* İçeri taşan kısmı kırpmak için */
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+
+.profile img {
+    width: 100%;  /* Resmin çemberi doldurmasını sağla */
+    height: 100%; 
+    object-fit: cover;  /* Resmi kırparak çember içine sığdır */
+}
+
 
 .calculator img{
     width: auto;
-    height: 50px;
+    height: 65px;
 }
 .language img{
     width: 50px;
     height: 50px;
 }
-.profile img {
-    width: 60px;
-    height: 60px;
-}
 
 /* ✅ 1920px - ORANI KORU */
 @media screen and (max-width: 1920px) {
     .navbar {
-        padding: 15px 50px;
-        width: 97%;
+        padding: 5px 50px;
+        width: 95%;
     }
 
     .navbar .logo{
@@ -128,16 +158,16 @@
     }
 
     .navbar .logo img {
-        width: 4.8vw;
+        width: 4.167vw;
     }
 
     .navbar .logo h1 {
-        font-size: 2vw;
-        line-height: 2.4vw;
+        font-size: 1.667vw;
+        line-height: 2.2vw;
     }
 
     .navbar .search-input {
-        width: 65%;
+        width: 43%;
         height: 55px;
         font-size: 1vw;
     }
@@ -153,73 +183,144 @@
     }
 
     .language img{
-    width: 40px;
+    width: 50px;
     height: 50px;
     }
     .profile img {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
     }
 }
 
 /* ✅ 1440px - ORANI KORU */
 @media screen and (max-width: 1440px) {
     .navbar {
-        padding: 10px 70px;
-        width: 94%;
+        padding: 5px 38px;
+        width: 95.5%;
     }
 
     .navbar .logo img {
-        width: 5vw;
+        width: 3w;
+        min-width: 50px;
+        max-width: 100px;
+        height: auto;
     }
 
     .navbar .logo h1 {
-        font-size: 2.2vw;
+        font-size: 1.7vw;
+        line-height: 2vw;
     }
 
     .navbar .search-input {
-        width: 55%;
+        width: 42%;
         height: 45px;
         font-size: 0.9vw;
     }
 
-    .language, .calculator, .profile {
-        width: 2.5vw;
-        height: 2.5vw;
+    .language {
+        width: 3vw;
+        min-width: 47px;
+        height: 3vw;
+        min-height: 47px;
+        border-radius: 15px;
+        /* margin-left: -16px; */
+    }
+    .calculator {
+        width: 3vw;
+        min-width: 47px;
+        height: 3vw;
+        min-height: 47px;
+        border-radius: 15px;
+    } 
+    .profile {
+        width: 3vw;
+        min-width: 46px;
+        height: 3vw;
+        min-height: 46px;
+    }
+
+    .calculator img {
+        width: auto;
+        height: 40px;
+    }
+
+    .profile img {
+        width: 50px;
+        height: 50px;
     }
 }
 
 /* ✅ 1280px - ORANI KORU */
 @media screen and (max-width: 1280px) {
     .navbar {
-        padding: 10px 60px;
+        padding: 5px 120px;
         width: 96%;
     }
 
+    .navbar .logo {
+        gap: 4px;
+    }
+
     .navbar .logo img {
-        width: 4.5vw;
+        width: 4.2vw;
+        min-width: 40px;
+        max-width: 100px;
+        height: auto;
     }
 
     .navbar .logo h1 {
-        font-size: 2vw;
+        font-size: 1.7vw;
+        line-height: 2vw;
     }
 
     .navbar .search-input {
-        width: 50%;
+        width: 80%;
         height: 45px;
         font-size: 0.9vw;
+        margin-left: -7px;
+        max-width: 1850px;
     }
 
-    .language, .calculator, .profile {
-        width: 2.3vw;
-        height: 2.3vw;
+    .language {
+        width: 3vw;
+        min-width: 43px;
+        height: 3vw;
+        min-height: 43px;
+        border-radius: 15px;
+        margin-left: -10px;
+    }
+    .calculator {
+        width: 2vw;
+        min-width: 23px;
+        height: 2vw;
+        min-height: 23px;
+        border-radius: 15px;
+        padding: 21px;
+        margin-left: 16px;
+    } 
+    .profile {
+        width: 3vw;
+        min-width: 46px;
+        height: 3vw;
+        min-height: 46px;
+        margin-left: 10px;
+    }
+
+    .calculator img {
+        width: auto;
+        height: 30px;
+    }
+
+    .profile img {
+        width: 50px;
+        height: 50px;
     }
 }
 
 /* ✅ 1024px - ORANI KORU */
 @media screen and (max-width: 1024px) {
     .navbar {
-        padding: 10px 50px;
+        padding: 4px 50px;
         width: 98%;
     }
 
@@ -232,14 +333,44 @@
     }
 
     .navbar .search-input {
-        width: 45%;
-        height: 40px;
+        width: 65%;
+        height: 35px;
         font-size: 0.8vw;
     }
 
-    .language, .calculator, .profile {
-        width: 2vw;
+    .language {
+        width: 3vw;
+        min-width: 35px;
+        height: 3vw;
+        min-height: 35px;
+        border-radius: 15px;
+        margin-left: -10px;
+    }
+    .calculator {
+        width: 1vw;
+        min-width: 23px;
         height: 2vw;
+        min-height: 23px;
+        border-radius: 15px;
+        padding: 18px;
+        margin-left: 16px;
+    } 
+    .profile {
+        width: 3vw;
+        min-width: 40px;
+        height: 3vw;
+        min-height: 40px;
+        margin-left: 10px;
+    }
+
+    .calculator img {
+        width: auto;
+        height: 30px;
+    }
+
+    .profile img {
+        width: 50px;
+        height: 50px;
     }
 }
 

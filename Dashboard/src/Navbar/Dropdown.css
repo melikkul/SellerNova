@@ -1,6 +1,7 @@
 .dropdown-container {
     position: relative;
     display: inline-block;
+    margin-left: -15px;
 }
 
 .dropdown-button {
@@ -9,10 +10,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 340px;
-    height: 70px;
+    width: 385px;
+    height: 80px;
     padding: 9px 13px;
-    border-radius: 20px;
+    border-radius: 25px;
     border: 1px solid #E2E8F0;
     gap: 10px;
     transition: background-color 0.2s ease-in-out;
@@ -48,16 +49,17 @@
 
 /* Dropdown menüsü */
 .dropdown-menu {
+    font-size: 22px;
     font-family: var(--font-primary);
     position: absolute;
     background: white;
     border: 1px solid #ccc;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 340px;
+    width: 385px;
     top: 85px;
     left: 0;
     border-radius: 20px;
-    max-height: 280px;
+    max-height: 330px;
     overflow-y: auto; /* Sadece dikey scroll olacak */
     overflow-x: hidden; /* Yatay scroll tamamen kaldırıldı */
     padding-right: 0; /* Scrollbar içeri taşmasın */
@@ -65,6 +67,15 @@
     box-sizing: border-box;
     clip-path: inset(0px round 20px); /* Scrollbar'ın border-radius içinde kalmasını sağlar */
 }
+
+/* Dropdown metinlerini daha net hale getir */
+.dropdown-menu,
+.dropdown-item {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
 
 /* Scroll çubuğu */
 .dropdown-menu::-webkit-scrollbar {
@@ -81,8 +92,8 @@
 .dropdown-item {
     display: flex;
     align-items: center;
-    gap: 60px;
-    padding: 10px;
+    gap: 90px;
+    padding: 15px 10px;
     color: black;
     text-decoration: none;
     transition: background-color 0.2s;
@@ -105,8 +116,8 @@
 /* ✅ 1920px için */
 @media screen and (max-width: 1920px) {
     .dropdown-button {
-        width: 280px;
-        height: 55px;
+        width: 300px;
+        height: 60px;
         padding: 10px 15px;
     }
     .dropdown-button p {
@@ -120,7 +131,7 @@
     }
     .dropdown-menu {
         width: 300px;
-        top: 80px;
+        top: 65px;
         max-height: 250px;
     }
     .dropdown-item {
@@ -131,78 +142,88 @@
 /* ✅ 1440px için */
 @media screen and (max-width: 1440px) {
     .dropdown-button {
-        width: 240px;
-        height: 55px;
+        width: 210px;
+        height: 48px;
         padding: 6px 10px;
+        border-radius: 15px;
+        margin-left: 10px;
     }
     .dropdown-button p {
-        font-size: 18px;
+        font-size: 15px;
     }
     .dropdown-flag {
-        height: 28px;
+        height: 22px;
     }
     .dropdown-icon-right {
-        width: 40px;
+        width: 30px;
     }
     .dropdown-menu {
-        width: 240px;
-        top: 70px;
-        max-height: 210px;
+        width: 210px;
+        top: 50px;
+        max-height: 175px;
+        margin-left: 10px;
     }
     .dropdown-item {
-        gap: 40px;
+        font-size: 15px;
+        gap: 35px;
+        padding: 10px 10px;
     }
 }
 
 /* ✅ 1280px için */
 @media screen and (max-width: 1280px) {
     .dropdown-button {
-        width: 220px;
-        height: 50px;
+        width: 192px;
+        height: 43px;
         padding: 5px 9px;
+        border-radius: 13px;
     }
     .dropdown-button p {
         font-size: 16px;
     }
     .dropdown-flag {
-        height: 26px;
+        height: 20px;
     }
     .dropdown-icon-right {
         width: 38px;
     }
     .dropdown-menu {
-        width: 220px;
-        top: 65px;
-        max-height: 190px;
+        width: 192px;
+        top: 45px;
+        max-height: 160px;
     }
     .dropdown-item {
-        gap: 35px;
+        gap: 25px;
+        font-size: 16px;
     }
 }
 
 /* ✅ 1024px için */
 @media screen and (max-width: 1024px) {
     .dropdown-button {
-        width: 200px;
-        height: 45px;
+        width: 153px;
+        height: 35px;
         padding: 4px 8px;
     }
     .dropdown-button p {
-        font-size: 15px;
+        font-size: 13px;
     }
     .dropdown-flag {
-        height: 24px;
+        height: 18px;
     }
     .dropdown-icon-right {
-        width: 36px;
+        width: 25px;
     }
     .dropdown-menu {
-        width: 200px;
-        top: 60px;
-        max-height: 170px;
+        width: 153px;
+        top: 37px;
+        max-height: 155px;
+        margin-left: 10px;
     }
     .dropdown-item {
-        gap: 30px;
+        font-size: 13px;
+        gap: 19px;
+        padding: 10px 10px;
     }
 }
 

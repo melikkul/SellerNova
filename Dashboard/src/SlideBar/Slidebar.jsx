@@ -16,7 +16,8 @@ export default function Slidebar() {
         <div className='slidebar-button'>
                 <button className='slidebar-close'><img src={Slidebar_close} alt="CLOSE" /></button>
         </div>
-            <button className='slidebar-items' >
+        <div className='slidebar-all-button'>
+        <button className='slidebar-items' >
                 <img src={Order_icon} alt="" className='slidebar-icon'/>Siparişlerim</button>
             <button className='slidebar-items'>
                 <img src={Inventory_icon} alt="" className='slidebar-icon'/>Envanter</button>
@@ -31,6 +32,7 @@ export default function Slidebar() {
             <button className='slidebar-items'>
                 <img src={Warehouse_icon} alt="" className='slidebar-icon'/>Depolarım</button>
         </div>
+    </div>
   )
 }
 

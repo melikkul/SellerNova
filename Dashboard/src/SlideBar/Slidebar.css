@@ -1,8 +1,8 @@
 .slidebar{
-    margin-top: 170px;
+    margin-top: 120px;
     display: flex;
     position: fixed;
-    width: 370px;
+    width: 331px;
     height: 909px;
     padding-left: 35px;
     padding-right: 35px;
@@ -25,14 +25,18 @@
 }
 
 .slidebar-close{
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     border: none;
     background-color: var(--background-light);
+    margin-top: 21px;
+}
+.slidebar-all-button{
+    margin-top: 40px;
 }
 
 .slidebar-close img{
-    width: 27px;
+    width: 23px;
     height: auto;
 }
 .slidebar-items{
@@ -41,18 +45,19 @@
     border-radius: 50px;
     border: 1px solid #2D3748;
     background: #E2E8F0;
-    width: 350px;
-    height: 100px;
-    margin-bottom: 36px;
+    width: 100%;
+    max-width: 354px;
+    height: 66px;
+    margin-bottom: 21px;
     text-align: left;
     font-family: var(--font-primary);
-    font-size: 31px;
-    font-weight: 400;
+    font-size: 23px;
+    font-weight: 500;
     gap: 10px;
 }
 
 .slidebar-icon{
     width: auto;
-    height: 60px;
+    height: 44px;
     margin-left: 20px;
 }

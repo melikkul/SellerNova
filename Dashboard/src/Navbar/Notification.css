@@ -12,7 +12,8 @@
 }
 
 .notification img {
-    width: 70px;
+    width: 70px; /* 2560px için */
+    min-width: 40px; /* Küçülme limiti */
 }
 
 /* Bildirim sayısını gösteren nokta */
@@ -23,10 +24,12 @@
     right: 5px;
     background-color: green;
     color: white;
-    font-size: 16px;
+    font-size: 0.7vw; /* Oranlı küçülme */
     font-weight: bold;
-    width: 25px;
-    height: 25px;
+    width: 1.2vw;
+    height: 1.2vw;
+    min-width: 18px; /* Küçülme limiti */
+    min-height: 18px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -38,10 +41,11 @@
 /* Bildirim menüsü */
 .notification-menu {
     position: absolute;
-    top: 50px;
+    top: 3.5vw;
     right: 0;
-    width: 280px;
-    max-height: 250px; /* En fazla 3 bildirim kadar yüksek */
+    width: 14vw; /* 2560px için */
+    max-height: 10vw; /* Oranlı yükseklik */
+    min-width: 250px; /* Çok fazla küçülmesini önler */
     background: white;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -54,7 +58,7 @@
 /* Başlık */
 .notification-menu h3 {
     font-family: var(--font-primary);
-    font-size: 16px;
+    font-size: 1vw;
     margin: 0;
     padding-bottom: 8px;
     border-bottom: 1px solid #ddd;
@@ -65,13 +69,13 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 180px; /* En fazla 3 bildirim kadar yüksek */
-    overflow-y: auto; /* Scroll aktif */
+    max-height: 8vw; /* Oranlı yükseklik */
+    overflow-y: auto;
 }
 
 /* Kaydırma çubuğu */
 .notification-list::-webkit-scrollbar {
-    width: 6px;
+    width: 0.5vw;
 }
 
 .notification-list::-webkit-scrollbar-thumb {
@@ -80,11 +84,12 @@
 }
 
 .notification-menu li {
-    padding: 10px;
+    padding: 1vw;
     border-bottom: 1px solid #eee;
     cursor: pointer;
     transition: background 0.2s;
     font-family: var(--font-primary);
+    font-size: 0.8vw;
 }
 
 .notification-menu li:hover {
@@ -103,24 +108,146 @@
     background: #fff;
 }
 
+/* Bildirim tarihi */
 .notif-date {
     display: block;
-    font-size: 12px;
+    font-size: 0.6vw;
     color: gray;
     margin-top: 5px;
     font-family: var(--font-primary);
 }
-@media screen and (max-width: 1920px) {
 
+/* 📌 RESPONSIVE MEDIA QUERIES */
+
+/* ✅ 1920px için */
+@media screen and (max-width: 1920px) {
+    .notification img {
+        width: 55px;
+    }
+    .notification-badge {
+        font-size: 0.7vw;
+        width: 1.1vw;
+        height: 1.1vw;
+    }
+    .notification-menu {
+        width: 13vw;
+        max-height: 9vw;
+    }
+    .notification-menu h3 {
+        font-size: 1vw;
+    }
+    .notification-menu li {
+        font-size: 0.9vw;
+        padding: 0.9vw;
+    }
+    .notif-date {
+        font-size: 0.7vw;
+    }
 }
+
+
+/* ✅ 1440px için */
 @media screen and (max-width: 1440px) {
+    .notification img {
+        width: 50px;
+    }
+    .notification-badge {
+        font-size: 0.75vw;
+        width: 1.2vw;
+        height: 1.2vw;
+    }
+    .notification-menu {
+        width: 11vw;
+        max-height: 8vw;
+    }
+    .notification-menu h3 {
+        font-size: 0.85vw;
+    }
+    .notification-menu li {
+        font-size: 0.8vw;
+        padding: 0.8vw;
+    }
+    .notif-date {
+        font-size: 0.6vw;
+    }
+}
+
+/* ✅ 1280px için */
+@media screen and (max-width: 1280px) {
     .notification img {
         width: 45px;
     }
+    .notification-badge {
+        font-size: 0.7vw;
+        width: 1.1vw;
+        height: 1.1vw;
+    }
+    .notification-menu {
+        width: 10vw;
+        max-height: 7.5vw;
+    }
+    .notification-menu h3 {
+        font-size: 0.8vw;
+    }
+    .notification-menu li {
+        font-size: 0.75vw;
+        padding: 0.75vw;
+    }
+    .notif-date {
+        font-size: 0.55vw;
+    }
 }
-@media screen and (max-width: 1280px) {
 
-}
+/* ✅ 1024px için */
 @media screen and (max-width: 1024px) {
+    .notification img {
+        width: 40px;
+    }
+    .notification-badge {
+        font-size: 0.8vw;
+        width: 1.5vw;
+        height: 1.5vw;
+        min-width: 10px;
+        min-height: 10px;
+    }
+    .notification-menu {
+        width: 9.5vw;
+        max-height: 7vw;
+    }
+    .notification-menu h3 {
+        font-size: 0.75vw;
+    }
+    .notification-menu li {
+        font-size: 0.7vw;
+        padding: 0.7vw;
+    }
+    .notif-date {
+        font-size: 0.5vw;
+    }
+}
 
+/* ✅ 768px için */
+@media screen and (max-width: 768px) {
+    .notification img {
+        width: 35px;
+    }
+    .notification-badge {
+        font-size: 0.35vw;
+        width: 1vw;
+        height: 1vw;
+    }
+    .notification-menu {
+        width: 9vw;
+        max-height: 6.5vw;
+    }
+    .notification-menu h3 {
+        font-size: 0.7vw;
+    }
+    .notification-menu li {
+        font-size: 0.65vw;
+        padding: 0.65vw;
+    }
+    .notif-date {
+        font-size: 0.45vw;
+    }
 }

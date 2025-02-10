@@ -102,63 +102,132 @@
     margin-top: 5px;
 }
 
+/* ✅ 1920px için */
 @media screen and (max-width: 1920px) {
-
-}
-
-@media screen and (max-width: 1440px) {
-    .dropdown-container {
-        position: relative;
-        display: inline-block;
-        margin-left: -20px;
-    }
     .dropdown-button {
-        display: flex;
-        justify-content: space-between;
-        width: 200px;
-        height: 50px;
-        padding-right: 30px;
-        gap: 18px;
+        width: 280px;
+        height: 55px;
+        padding: 10px 15px;
     }
     .dropdown-button p {
-        font-family: var(--font-primary);
-        font-size: 17px;
-        font-weight: 400;
+        font-size: 20px;
     }
     .dropdown-flag {
-        width: 40px;
-        height: 22px;
-        border-radius: 5px;
-        object-fit: cover;
-        gap: 10px;
+        height: 28px;
     }
     .dropdown-icon-right {
-        width: 35px;
+        width: 40px;
+    }
+    .dropdown-menu {
+        width: 300px;
+        top: 80px;
+        max-height: 250px;
+    }
+    .dropdown-item {
+        gap: 40px;
+    }
+}
+
+/* ✅ 1440px için */
+@media screen and (max-width: 1440px) {
+    .dropdown-button {
+        width: 240px;
+        height: 55px;
+        padding: 6px 10px;
+    }
+    .dropdown-button p {
+        font-size: 18px;
+    }
+    .dropdown-flag {
+        height: 28px;
+    }
+    .dropdown-icon-right {
+        width: 40px;
+    }
+    .dropdown-menu {
+        width: 240px;
+        top: 70px;
+        max-height: 210px;
+    }
+    .dropdown-item {
+        gap: 40px;
+    }
+}
+
+/* ✅ 1280px için */
+@media screen and (max-width: 1280px) {
+    .dropdown-button {
+        width: 220px;
+        height: 50px;
+        padding: 5px 9px;
+    }
+    .dropdown-button p {
+        font-size: 16px;
+    }
+    .dropdown-flag {
+        height: 26px;
+    }
+    .dropdown-icon-right {
+        width: 38px;
+    }
+    .dropdown-menu {
+        width: 220px;
+        top: 65px;
+        max-height: 190px;
+    }
+    .dropdown-item {
+        gap: 35px;
+    }
+}
+
+/* ✅ 1024px için */
+@media screen and (max-width: 1024px) {
+    .dropdown-button {
+        width: 200px;
+        height: 45px;
+        padding: 4px 8px;
+    }
+    .dropdown-button p {
+        font-size: 15px;
+    }
+    .dropdown-flag {
+        height: 24px;
+    }
+    .dropdown-icon-right {
+        width: 36px;
     }
     .dropdown-menu {
         width: 200px;
         top: 60px;
-        left: 0;
         max-height: 170px;
-        box-sizing: border-box;
-        
     }
     .dropdown-item {
-        gap: 18px;
-        padding: 10px;
-        width: 35px;
-        cursor: pointer;
-        
-    }
-    .dropdown-menu::-webkit-scrollbar {
-        width: 4px;
+        gap: 30px;
     }
 }
 
-@media screen and (max-width: 1280px) {
-
-}
-
-@media screen and (max-width: 1024px) {
-
+/* ✅ 768px için */
+@media screen and (max-width: 768px) {
+    .dropdown-button {
+        width: 180px;
+        height: 40px;
+        padding: 3px 7px;
+    }
+    .dropdown-button p {
+        font-size: 14px;
+    }
+    .dropdown-flag {
+        height: 22px;
+    }
+    .dropdown-icon-right {
+        width: 34px;
+    }
+    .dropdown-menu {
+        width: 180px;
+        top: 55px;
+        max-height: 150px;
+    }
+    .dropdown-item {
+        gap: 25px;
+    }
 }

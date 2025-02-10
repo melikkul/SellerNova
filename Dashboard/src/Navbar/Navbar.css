@@ -1,50 +1,68 @@
 .navbar {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* Navbarı tam ortaya hizalar */
+    width: 96%; /* Sayfanın %90'ını kaplasın */
+    max-width: 2560px;
     z-index: 1000;
     display: flex;
-    justify-content: space-between;  /* Öğeleri yatayda düzenler */
+    justify-content: space-between; /* Elemanları eşit yay */
     align-items: center;
     background: var(--background-light);
     border: 1px solid #E2E8F0;
-    padding: 10px 30px;
+    padding: 20px 80px; /* Sağ ve sol boşluk arttırıldı */
     gap: 20px;
+    flex-wrap: nowrap; /* Asla alt alta düşmeyecek */
+    overflow: visible; /* Taşmaları önle */
 }
 
+
+/* LOGO */
 .navbar .logo {
     display: flex;
+    align-items: center;
     cursor: pointer;
     gap: 10px;
+    flex-shrink: 0; /* Küçülmesini önle */
+    margin-right: 40px;
+    margin-left: 40px;
 }
 
 .navbar .logo img {
-    width: 100px;
+    width: 5vw;
+    min-width: 80px;
     height: auto;
 }
 
 .navbar .logo h1 {
     font-family: var(--font-primary);
-    font-size: 42px;
+    line-height: 2.539vw;
+    font-size: 2vw;
     font-weight: 400;
+    white-space: nowrap; /* Alt satıra düşmeyi engelle */
 }
 
+/* SEARCH BAR */
 .navbar .search-container {
-    flex: 1;
     display: flex;
     justify-content: center;
+    flex: 1; /* Esnek genişlik */
+    min-width: 300px;
+    max-width: 900px;
 }
 
 .navbar .search-input {
-    width: 60%;
+    width: 100%;
+    min-width: 300px;
+    max-width: 1300px;
     height: 60px;
     border-radius: 30px;
     border: 1px solid #E2E8F0;
     background: #F7FAFC;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: var(--font-primary);
-    font-size: 14px;
+    font-size: 1.2vw;
     padding-left: 20px;
 }
 
@@ -52,144 +70,202 @@
     outline: none;
 }
 
+/* SAĞ TARAFTAKİ BUTONLAR */
 .navbar .icons {
     display: flex;
-    gap: 10px;
-    align-items: center;
+    margin-right: 50px;
+    justify-content: flex-end;
+    gap: 20px;
+    flex-shrink: 0; /* Küçülmesini engelle */
 }
 
-.language,
-.calculator,
-.profile {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
+.language, .calculator, .profile {
+    width: 3vw;
+    min-width: 50px;
+    height: 3vw;
+    min-height: 50px;
+    border-radius: 20px;
     border: 1px solid #E2E8F0;
     background: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
-.calculator img,
-.language img,
+.calculator {
+    padding: 25px;
+}
+
+.profile {
+    border-radius: 100px;
+}
+
+.calculator img{
+    width: auto;
+    height: 50px;
+}
+.language img{
+    width: 50px;
+    height: 50px;
+}
 .profile img {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
 }
 
-/* ✅ 1920px için */
+/* ✅ 1920px - ORANI KORU */
 @media screen and (max-width: 1920px) {
     .navbar {
-        padding: 15px 40px;
-        gap: 30px;
+        padding: 15px 50px;
+        width: 97%;
+    }
+
+    .navbar .logo{
+        margin-right: 30px;
+        margin-left: 30px;
     }
 
     .navbar .logo img {
-        width: 120px;
+        width: 4.8vw;
     }
 
     .navbar .logo h1 {
-        font-size: 45px;
+        font-size: 2vw;
+        line-height: 2.4vw;
     }
 
     .navbar .search-input {
-        width: 70%;
-        height: 70px;
-        font-size: 16px;
+        width: 65%;
+        height: 55px;
+        font-size: 1vw;
     }
 
-    .language,
-    .calculator,
-    .profile {
-        width: 55px;
-        height: 55px;
+    .language, .calculator, .profile {
+        width: 2.8vw;
+        height: 2.8vw;
+    }
+
+    .calculator img{
+    width: auto;
+    height: 40px;
+    }
+
+    .language img{
+    width: 40px;
+    height: 50px;
+    }
+    .profile img {
+        width: 60px;
+        height: 60px;
     }
 }
 
-/* ✅ 1440px - 1280px Arası */
+/* ✅ 1440px - ORANI KORU */
 @media screen and (max-width: 1440px) {
     .navbar {
-        padding: 10px 20px;
-        gap: 10px;
+        padding: 10px 70px;
+        width: 94%;
     }
 
     .navbar .logo img {
-        width: 80px;
+        width: 5vw;
     }
 
     .navbar .logo h1 {
-        font-size: 30px;
+        font-size: 2.2vw;
+    }
+
+    .navbar .search-input {
+        width: 55%;
+        height: 45px;
+        font-size: 0.9vw;
+    }
+
+    .language, .calculator, .profile {
+        width: 2.5vw;
+        height: 2.5vw;
+    }
+}
+
+/* ✅ 1280px - ORANI KORU */
+@media screen and (max-width: 1280px) {
+    .navbar {
+        padding: 10px 60px;
+        width: 96%;
+    }
+
+    .navbar .logo img {
+        width: 4.5vw;
+    }
+
+    .navbar .logo h1 {
+        font-size: 2vw;
     }
 
     .navbar .search-input {
         width: 50%;
-        height: 50px;
-        font-size: 13px;
+        height: 45px;
+        font-size: 0.9vw;
     }
 
-    .language,
-    .calculator,
-    .profile {
-        width: 45px;
-        height: 45px;
+    .language, .calculator, .profile {
+        width: 2.3vw;
+        height: 2.3vw;
     }
 }
 
-/* ✅ 1280px - 1024px Arası */
-@media screen and (max-width: 1280px) {
+/* ✅ 1024px - ORANI KORU */
+@media screen and (max-width: 1024px) {
+    .navbar {
+        padding: 10px 50px;
+        width: 98%;
+    }
+
     .navbar .logo img {
-        width: 70px;
+        width: 4vw;
     }
 
     .navbar .logo h1 {
-        font-size: 28px;
+        font-size: 1.8vw;
+    }
+
+    .navbar .search-input {
+        width: 45%;
+        height: 40px;
+        font-size: 0.8vw;
+    }
+
+    .language, .calculator, .profile {
+        width: 2vw;
+        height: 2vw;
+    }
+}
+
+/* ✅ 768px - ORANI KORU */
+@media screen and (max-width: 768px) {
+    .navbar {
+        padding: 10px 40px;
+        width: 98%;
+    }
+
+    .navbar .logo img {
+        width: 3.5vw;
+    }
+
+    .navbar .logo h1 {
+        font-size: 1.6vw;
     }
 
     .navbar .search-input {
         width: 40%;
-        height: 45px;
-        font-size: 12px;
-    }
-
-    .language,
-    .calculator,
-    .profile {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-/* ✅ 1024px Altında */
-@media screen and (max-width: 1024px) {
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .navbar .logo {
-        justify-content: center;
-    }
-
-    .navbar .search-container {
-        width: 100%;
-    }
-
-    .navbar .search-input {
-        width: 80%;
-        height: 40px;
-    }
-
-    .navbar .icons {
-        gap: 5px;
-    }
-
-    .language,
-    .calculator,
-    .profile {
-        width: 35px;
         height: 35px;
+        font-size: 0.7vw;
+    }
+
+    .language, .calculator, .profile {
+        width: 1.8vw;
+        height: 1.8vw;
     }
 }

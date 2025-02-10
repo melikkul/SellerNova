@@ -1,13 +1,12 @@
-.slidebar{
-    margin-top: 120px;
-    display: flex;
+.slidebar {
     position: fixed;
+    top: 0; /* JS tarafından değiştirilecek */
+    left: 0;
     width: 331px;
-    height: 909px;
+    height: calc(100vh - var(--navbar-height, 100px)); /* Navbar'ı çıkar */
     padding-left: 35px;
     padding-right: 35px;
     padding-top: 28px;
-    padding-bottom: 500px;
     flex-direction: column;
     flex-shrink: 0;
     border: 1px solid #E2E8F0;

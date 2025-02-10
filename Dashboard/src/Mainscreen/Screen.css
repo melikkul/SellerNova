@@ -1,0 +1,40 @@
+.screen-container {
+  text-align: center;
+  padding: 10px 0px ;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: lightgray;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.tab-button:hover {
+  background-color: gray;
+  color: white;
+}
+
+.tab-button.active {
+  background-color: blue;
+  color: white;
+}
+
+.content {
+  padding: 20px;
+  border: 1px solid #ddd;
+  min-height: 200px;
+  background-color: #f9f9f9;
+}
+
+.tab-content {
+  padding: 20px;
+}

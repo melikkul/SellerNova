@@ -1,14 +1,19 @@
 import "./App.css";
-import logo from './assets/Logo.svg'
-import notif from './assets/bell.svg'
-import calculator from './assets/calculator.svg'
+import React, { useState } from "react";
 import Navbar from "./Navbar/Navbar.jsx";
 import Slidebar from './SlideBar/Slidebar.jsx'
+import Screen from './Mainscreen/Screen.jsx'
 function App() {
+  const [navbarHeight, setNavbarHeight] = useState(0);
+  const [slidebarWidth, setSlidebarWidth] = useState(0);
   return (
     <>
-    <Navbar />
-    <Slidebar />
+      <Navbar setNavbarHeight={setNavbarHeight} />
+      <Slidebar
+        navbarHeight={navbarHeight}
+        setSlidebarWidth={setSlidebarWidth}
+      />
+      <Screen navbarHeight={navbarHeight} slidebarWidth={slidebarWidth} />
     </>
   );
 }

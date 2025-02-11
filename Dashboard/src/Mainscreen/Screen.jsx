@@ -20,6 +20,7 @@ export default function Screen({ navbarHeight, slidebarWidth }) {
         >
           <h2>Satış</h2> 
           <p>Bugünki Satış</p>
+          <h1>$ 0</h1>
         </button>
         <button
           className={`tab-button ${activeTab === "tab2" ? "active" : ""}`}
@@ -27,6 +28,7 @@ export default function Screen({ navbarHeight, slidebarWidth }) {
         >
           <h2>Envanter</h2>
           <p>Aktif</p>
+          <h1>4,578/4,823</h1>
         </button>
         <button
           className={`tab-button ${activeTab === "tab3" ? "active" : ""}`}
@@ -34,6 +36,7 @@ export default function Screen({ navbarHeight, slidebarWidth }) {
         >
           <h2>Siparişler</h2>
           <p>Son 30 Gün</p>
+          <h1>0</h1>
         </button>
         <button
           className={`tab-button ${activeTab === "tab4" ? "active" : ""}`}
@@ -41,6 +44,7 @@ export default function Screen({ navbarHeight, slidebarWidth }) {
         >
           <h2>Mesajlar</h2>
           <p>Aktif</p>
+          <h1>0</h1>
         </button>
         <button
           className={`tab-button ${activeTab === "tab5" ? "active" : ""}`}
@@ -48,13 +52,15 @@ export default function Screen({ navbarHeight, slidebarWidth }) {
         >
           <h2>Tahmini Kar</h2>
           <p>Son 30 Gün</p>
+          <h1>$ 0</h1>
         </button>
         <button
           className={`tab-button ${activeTab === "tab6" ? "active" : ""}`}
           onClick={() => setActiveTab("tab6")}
         >
           <h2>Hesap Sağlığı</h2>
-          <p>Son Güncelleme:</p> 
+          <p>Son Güncelleme:26.02.2025</p> 
+          <h1>200</h1>
         </button>
       </div>
 

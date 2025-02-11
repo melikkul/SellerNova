@@ -29,9 +29,10 @@
     border: none;
     background-color: var(--background-light);
     margin-top: 21px;
+    background: none;
 }
 .slidebar-all-button{
-    margin-top: 40px;
+    margin-top: 79px;
 }
 
 .slidebar-close img{
@@ -47,16 +48,163 @@
     width: 100%;
     max-width: 354px;
     height: 66px;
-    margin-bottom: 21px;
+    margin-bottom: 22px;
     text-align: left;
     font-family: var(--font-primary);
     font-size: 23px;
     font-weight: 500;
-    gap: 10px;
+    gap: 1px;
 }
 
 .slidebar-icon{
     width: auto;
     height: 44px;
     margin-left: 20px;
+}
+
+/* ✅ 1920px - ORANI KORU */
+@media screen and (max-width: 1920px) {
+    .slidebar{
+        width: 232px;
+        padding-top: 20px;
+    }
+    .slidebar-button{
+        margin-left: 200px;
+        margin-top: 0px;
+    }
+    .slidebar-close img{
+        width: 17px;
+    }
+    .slidebar-items{
+        width: 110%;
+        max-width: 252px;
+        margin-left: -5px;
+        height: 48px;
+        margin-bottom: 17px;
+        font-size: 16px;
+    }
+    .slidebar-all-button{
+        margin-top: 62px;
+    }
+    .slidebar-icon{
+        height: 34px;
+    }
+}
+
+/* ✅ 1440px - ORANI KORU */
+@media screen and (max-width: 1440px) {
+    .slidebar{
+        width: 157px;
+        padding-top: 7px;
+    }
+    .slidebar-button{
+        margin-left: 150px;
+        margin-top: 0px;
+    }
+    .slidebar-close img{
+        width: 13px;
+    }
+    .slidebar-items{
+        width: 121%;
+        max-width: 252px;
+        margin-left: -15px;
+        height: 39px;
+        margin-bottom: 11px;
+        font-size: 13px;
+    }
+    .slidebar-all-button{
+        margin-top: 48px;
+    }
+    .slidebar-icon{
+        height: 27px;
+        margin-left: 10px;
+    }
+    
+}
+
+/* ✅ 1280px - ORANI KORU */
+@media screen and (max-width: 1280px) {
+    .slidebar{
+        width: 134px;
+        padding-top: 3px;
+    }
+    .slidebar-button{
+        margin-left: 130px;
+        margin-top: 0px;
+    }
+    .slidebar-close img{
+        width: 11px;
+    }
+    .slidebar-items{
+        width: 130%;
+        max-width: 261px;
+        margin-left: -15px;
+        height: 34px;
+        margin-bottom: 9px;
+        font-size: 11px;
+    }
+    .slidebar-all-button{
+        margin-top: 47px;
+    }
+    .slidebar-icon{
+        height: 24px;
+    }
+}
+
+/* ✅ 1024px - ORANI KORU */
+@media screen and (max-width: 1024px) {
+   .slidebar{
+        width: 134px;
+        padding-top: 3px;
+    }
+    .slidebar-button{
+        margin-left: 130px;
+        margin-top: 0px;
+    }
+    .slidebar-close img{
+        width: 11px;
+    }
+    .slidebar-items{
+        width: 130%;
+        max-width: 261px;
+        margin-left: -15px;
+        height: 34px;
+        margin-bottom: 10px;
+        font-size: 11px;
+    }
+    .slidebar-all-button{
+        margin-top: 47px;
+    }
+    .slidebar-icon{
+        height: 24px;
+    } 
+}
+
+/* ✅ 768px - ORANI KORU */
+@media screen and (max-width: 768px) {
+    .slidebar{
+        width: 114px;
+        padding-top: -10px;
+    }
+    .slidebar-button{
+        margin-left: 105px;
+        margin-top: 0px;
+    }
+    .slidebar-close img{
+        width: 11px;
+    }
+    .slidebar-items{
+        width: 129%;
+        max-width: 261px;
+        margin-left: -15px;
+        height: 31px;
+        margin-bottom: 10px;
+        font-size: 10px;
+    }
+    .slidebar-all-button{
+        margin-top: 40px;
+    }
+    .slidebar-icon{
+        height: 21px;
+    } 
 }

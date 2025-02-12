@@ -132,10 +132,11 @@
     .dropdown-menu {
         width: 300px;
         top: 65px;
-        max-height: 250px;
+        max-height: 240px;
     }
     .dropdown-item {
-        gap: 40px;
+        gap: 60px;
+        font-size:20px ;
     }
 }
 

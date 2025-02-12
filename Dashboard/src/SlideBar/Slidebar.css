@@ -35,6 +35,35 @@
     margin-top: 79px;
 }
 
+.slidebar-items:hover {
+    background: #E6F2F5; /* Daha koyu bir arka plan */
+    cursor: pointer;
+    color: #319795;
+    border: 2px solid #319795;
+}
+
+/* Seçili olan buton (aktif) */
+.slidebar-items.active {
+    background: #CBD5E0; /* Seçili buton koyu renk olacak */
+    color: #2C7A7B; /* Yazı rengi beyaz olacak */
+    border: 3px solid #2C7A7B; /* Daha koyu çerçeve */
+}
+
+/* .slidebar-icon {
+    mix-blend-mode: multiply;
+}
+
+.slidebar-items:hover .slidebar-icon {
+    filter: invert(52%) sepia(63%) saturate(285%) hue-rotate(135deg) brightness(97%) contrast(92%);
+}
+
+.slidebar-items.active .slidebar-icon {
+    filter: invert(34%) sepia(27%) saturate(505%) hue-rotate(136deg) brightness(90%) contrast(92%);
+} */
+
+
+
+
 .slidebar-close img{
     width: 23px;
     height: auto;

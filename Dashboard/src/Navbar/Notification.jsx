@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import bell from "../assets/bell.svg";
 import "./Notification.css";
 
 export default function Notification({ notifications }) {
-  const [isOpen, setIsOpen] = useState(false); // Menü açık mı?
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null); // Bildirim menüsü referansı
 
   // Okunmamış bildirim sayısını hesapla
   const unreadCount = notifications.filter((n) => !n.read).length;
@@ -13,8 +14,25 @@ export default function Notification({ notifications }) {
     setIsOpen(!isOpen);
   };
 
+  // Dışarıya tıklanınca menüyü kapat
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    // Tıklama olayını dinle
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      // Komponent kaldırıldığında temizle
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="notification-container">
+    <div className="notification-container" ref={menuRef}>
       <button className="notification" onClick={toggleMenu}>
         <img src={bell} alt="Notification Bell" />
         <span className="notification-badge">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import chevronDown from "../assets/chevron-down.svg"; // Aç/Kapa ikonu
 import "./Dropdown.css";
 
@@ -64,8 +64,10 @@ export default function Dropdown() {
     code: "CA",
   }); // Varsayılan olarak Kanada seçili
 
+  const dropdownRef = useRef(null);
+
   const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   const handleSelect = (country) => {
@@ -73,8 +75,27 @@ export default function Dropdown() {
     setIsOpen(false); // Seçim yapıldığında dropdown'ı kapat
   };
 
+  // 📌 Dışına tıklayınca kapanma fonksiyonu
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="dropdown-container">
+    <div className="dropdown-container" ref={dropdownRef}>
       <button className="dropdown-button" onClick={toggleDropdown}>
         <img
           src={countryFlags[selectedCountry.code]}

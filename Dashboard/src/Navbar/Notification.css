@@ -135,14 +135,14 @@
         max-height: 9vw;
     }
     .notification-menu h3 {
-        font-size: 1vw;
+        font-size: 0.8vw;
     }
     .notification-menu li {
-        font-size: 0.9vw;
+        font-size: 0.8vw;
         padding: 0.9vw;
     }
     .notif-date {
-        font-size: 0.7vw;
+        font-size: 0.6vw;
     }
 }
 
@@ -164,15 +164,16 @@
         min-height: 15px;
     }
     .notification-menu {
-        width: 11vw;
+        width: 12vw;
+        min-width: 100px;
         max-height: 8vw;
     }
     .notification-menu h3 {
-        font-size: 0.85vw;
+        font-size: 0.75vw;
     }
     .notification-menu li {
-        font-size: 0.8vw;
-        padding: 0.8vw;
+        font-size: 0.7vw;
+        padding: 0.7vw;
     }
     .notif-date {
         font-size: 0.6vw;
@@ -190,18 +191,19 @@
         height: 1.1vw;
     }
     .notification-menu {
-        width: 10vw;
-        max-height: 7.5vw;
+        width: 9vw;
+        min-width: 100px;
+        max-height: 6.5vw;
     }
     .notification-menu h3 {
-        font-size: 0.8vw;
+        font-size: 0.6vw;
     }
     .notification-menu li {
-        font-size: 0.75vw;
-        padding: 0.75vw;
+        font-size: 0.65vw;
+        padding: 0.45vw;
     }
     .notif-date {
-        font-size: 0.55vw;
+        font-size: 0.45vw;
     }
 }
 
@@ -224,14 +226,14 @@
         max-height: 7vw;
     }
     .notification-menu h3 {
-        font-size: 0.75vw;
+        font-size: 0.73vw;
     }
     .notification-menu li {
-        font-size: 0.7vw;
-        padding: 0.7vw;
+        font-size: 0.63vw;
+        padding: 0.5vw;
     }
     .notif-date {
-        font-size: 0.5vw;
+        font-size: 0.4vw;
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./Slidebar.css";
 import Order_icon from "../assets/order-icon.svg";
 import Inventory_icon from "../assets/Inventory-icon.svg";
@@ -11,6 +11,7 @@ import Slidebar_close from "../assets/Slidebar-close.svg";
 
 export default function Slidebar({ navbarHeight, setSlidebarWidth }) {
   const sidebarRef = useRef(null);
+  const [activeButton, setActiveButton] = useState(null); // Seçili buton
 
   useEffect(() => {
     if (sidebarRef.current) {
@@ -27,6 +28,16 @@ export default function Slidebar({ navbarHeight, setSlidebarWidth }) {
     return () => window.removeEventListener("resize", handleResize);
   }, [setSlidebarWidth]);
 
+  const buttons = [
+    { icon: Order_icon, text: "Siparişlerim" },
+    { icon: Inventory_icon, text: "Envanter" },
+    { icon: Security_icon, text: "Güvenliklerim" },
+    { icon: Store_icon, text: "Mağazam" },
+    { icon: Reports_icon, text: "Raporlarım" },
+    { icon: NovaBridge_icon, text: "NovaBridge" },
+    { icon: Warehouse_icon, text: "Depolarım" },
+  ];
+
   return (
     <div
       className="slidebar"
@@ -39,30 +50,18 @@ export default function Slidebar({ navbarHeight, setSlidebarWidth }) {
         </button>
       </div>
       <div className="slidebar-all-button">
-        <button className="slidebar-items">
-          <img src={Order_icon} alt="" className="slidebar-icon" /> Siparişlerim
-        </button>
-        <button className="slidebar-items">
-          <img src={Inventory_icon} alt="" className="slidebar-icon" /> Envanter
-        </button>
-        <button className="slidebar-items">
-          <img src={Security_icon} alt="" className="slidebar-icon" />{" "}
-          Güvenliklerim
-        </button>
-        <button className="slidebar-items">
-          <img src={Store_icon} alt="" className="slidebar-icon" /> Mağazam
-        </button>
-        <button className="slidebar-items">
-          <img src={Reports_icon} alt="" className="slidebar-icon" /> Raporlarım
-        </button>
-        <button className="slidebar-items">
-          <img src={NovaBridge_icon} alt="" className="slidebar-icon" />{" "}
-          NovaBridge
-        </button>
-        <button className="slidebar-items">
-          <img src={Warehouse_icon} alt="" className="slidebar-icon" />{" "}
-          Depolarım
-        </button>
+        {buttons.map((btn, index) => (
+          <button
+            key={index}
+            className={`slidebar-items ${
+              activeButton === index ? "active" : ""
+            }`}
+            onClick={() => setActiveButton(index)}
+          >
+            <img src={btn.icon} alt="" className="slidebar-icon" />
+            {btn.text}
+          </button>
+        ))}
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Screen.css";
+import Orders from "./Orders.jsx";
 
 export default function Screen({ navbarHeight, slidebarWidth }) {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -68,7 +69,7 @@ export default function Screen({ navbarHeight, slidebarWidth }) {
       <div className="content">
         {activeTab === "tab1" && (
           <div className="tab-content">
-            <h1>Satış</h1>
+            <Orders />
           </div>
         )}
         {activeTab === "tab2" && (
@@ -78,7 +79,7 @@ export default function Screen({ navbarHeight, slidebarWidth }) {
         )}
         {activeTab === "tab3" && (
           <div className="tab-content">
-            <h1>Siperişler</h1>
+            <h1>Siparişler</h1>
           </div>
         )}
         {activeTab === "tab4" && (

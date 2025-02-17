@@ -1,27 +1,43 @@
 .screen-container {
   text-align: center;
-  /* padding: 0px 0; */
   font-family: var(--font-primary);
   font-size: 16px;
 }
 
 .button-container {
   display: flex;
-  justify-content: space-around;
   align-items: flex-end;
   flex-wrap: nowrap;
   min-height: 104px;
   background-color: #E2E8F0;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0 44px;
+  padding-bottom: -10px;
+  padding-top: 20px;
+  z-index: 1;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.button-container::-webkit-scrollbar {
+  display: none;
 }
 
 .tab-button {
-  width: 250px;
-  height: 87px;
+  width: 340px;
+  height: 110px;
   border-radius: 20px 20px 0 0;
   border: 1px solid #E2E8F0;
   border-bottom: none;
   background: #FFF;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
+  margin-right: 120px; /* Butonlar arasındaki mesafeyi ayarla */
+  flex-shrink: 0; 
+}
+
+.tab-button:last-child {
+  margin-right: 0;
 }
 
 .tab-button:focus,
@@ -31,11 +47,6 @@
               0px 5px 0px 0px rgba(255, 255, 255, 1);
   z-index: 21;
 }
-
-/* Aktif butonu birkaç piksel aşağı kaydır */
-/* .tab-button.active {
-  transform: translateY(2px);
-} */
 
 .content {
   padding: 20px;
@@ -50,4 +61,29 @@
 
 .tab-content {
   padding: 20px;
+}
+
+/* ✅ 1920px - ORANI KORU */
+@media screen and (max-width: 1920px) {
+
+}
+
+/* ✅ 1440px - ORANI KORU */
+@media screen and (max-width: 1440px) {
+
+}
+
+/* ✅ 1280px - ORANI KORU */
+@media screen and (max-width: 1280px) {
+
+}
+
+/* ✅ 1024px - ORANI KORU */
+@media screen and (max-width: 1024px) {
+
+}
+
+/* ✅ 768px - ORANI KORU */
+@media screen and (max-width: 768px) {
+
 }

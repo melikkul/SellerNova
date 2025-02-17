@@ -1,54 +1,40 @@
 .screen-container {
   text-align: center;
-  padding: 10px 0px;
+  padding: 10px 0;
   font-family: var(--font-primary);
   font-size: 16px;
-
 }
 
 .button-container {
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: -1px; /* İçeriğin üst sınırıyla hizalamak için */
+  justify-content: space-around;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  min-height: 104px;
 }
 
 .tab-button {
-  flex: 1;
-  border-radius: 20px 20px 0px 0px;
-  background: white;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  width: 250px;
+  height: 87px;
+  border-radius: 20px 20px 0 0;
   border: 1px solid #E2E8F0;
-  width: 100px;
-  height: 100px;
-  text-align: left;
-  margin-left: 35px;
-  position: relative;
-  z-index: 1; /* İçeriğin altında kalmasını engellemek için */
-}
-.tab-button.active {
-  border-bottom: 1px solid #f9f9f9; /* İçeriğin üst kenarıyla birleşmesi için */
-  /* background-color: #f9f9f9; */
-  box-shadow: 0px -7px 0px 0px rgba(44, 122, 123, 1);
-}
-
-.tab-button:hover {
-  background-color: gray;
-}
-
-.tab-button::after {
-  border-color: #2C7A7B;
-  border-top: 2px;
-  border-radius: 50px 50px 0px 0px;
   border-bottom: none;
-  border-left: none;
+  background: #FFF;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.tab-button:focus {
-  outline: none; /* Tarayıcı varsayılan outline'ını kaldırır */
-  box-shadow: 0px -7px 0px 0px rgba(44, 122, 123, 1);
-  background: none;
+.tab-button:focus,
+.tab-button.active {
+  border-bottom: none;
+  box-shadow: 0px -7px 0px 0px rgba(44, 122, 123, 1),
+              0px 5px 0px 0px rgba(255, 255, 255, 1);
+  z-index: 21;
 }
+
+/* Aktif butonu birkaç piksel aşağı kaydır */
+/* .tab-button.active {
+  transform: translateY(2px);
+} */
 
 .content {
   padding: 20px;
@@ -56,7 +42,6 @@
   border-left: none;
   border-right: none;
   min-height: 900px;
-  /* background-color: #f9f9f9; */
   text-align: left;
   position: relative;
   z-index: 0;

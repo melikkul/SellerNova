@@ -95,20 +95,20 @@ export default function Orders() {
       <h3>Satış</h3>
 
       {/* Dropdown Menü */}
-      <div className="dropdown">
+      <div className="dropdown-time">
         <button
-          className="dropdown-button"
+          className="dropdown-time-button"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           {selectedRange}{" "}
           <span className="arrow">{isDropdownOpen ? "▲" : "▼"}</span>
         </button>
         {isDropdownOpen && (
-          <ul className="dropdown-menu">
+          <ul className="dropdown-time-menu">
             {dateRanges.map((range) => (
               <li
                 key={range}
-                className={`dropdown-item ${
+                className={`dropdown-time-item ${
                   selectedRange === range ? "selected" : ""
                 } ${
                   hoveredItem === "Son 30 Gün" && range === "Son 30 Gün"

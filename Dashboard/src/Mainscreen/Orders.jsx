@@ -110,6 +110,7 @@ export default function Orders() {
       labels = Array.from({ length: dataLength }, (_, i) => `Gün ${i + 1}`);
     }
 
+    // Ana grafik verisi
     datasets1.push({
       label: `Ürün Satışları - ${selectedRange}`,
       data: generateRandomData(dataLength),
@@ -128,6 +129,7 @@ export default function Orders() {
       tension: 0.4,
     });
 
+    // **Diğer çizgiler (karşılaştırma verileri) geri eklendi**
     if (comparisonOptions[selectedRange]) {
       comparisonOptions[selectedRange].forEach((comp, index) => {
         datasets1.push({
@@ -152,33 +154,10 @@ export default function Orders() {
       });
     }
 
-    setChartData1({
-      labels,
-      datasets: [
-        {
-          label: `Ürün Satışları - ${selectedRange}`,
-          data: generateRandomData(labels.length),
-          borderColor: "rgba(75, 192, 192, 1)",
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          fill: false,
-          tension: 0.4,
-        },
-      ],
-    });
-    setChartData2({
-      labels,
-      datasets: [
-        {
-          label: `Sipariş Sayısı - ${selectedRange}`,
-          data: generateRandomData(labels.length),
-          borderColor: "rgba(255, 99, 132, 1)",
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          fill: false,
-          tension: 0.4,
-        },
-      ],
-    });
+    setChartData1({ labels, datasets: datasets1 });
+    setChartData2({ labels, datasets: datasets2 });
   }, [selectedRange, customStartDate, customEndDate]);
+
 
 useEffect(() => {
   function handleClickOutside(event) {

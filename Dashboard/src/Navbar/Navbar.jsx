@@ -1,10 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import "./Navbar.css";
 import logo from "../assets/Logo.svg";
-import calcucator from "../assets/calculator.svg";
+import calcucatorIcon from "../assets/calculator.svg";
 import profile from "../assets/profile.svg";
 import Dropdown from "./Dropdown.jsx";
 import Notification from "./Notification.jsx";
+import calculator from "./calculator.jsx"
 
 export default function Navbar({ setNavbarHeight }) {
   const navbarRef = useRef(null);
@@ -55,12 +56,21 @@ export default function Navbar({ setNavbarHeight }) {
       <button className="language">
         <img src="" alt="Language İcon" />
       </button>
-      <button className="calculator">
-        <img src={calcucator} alt="" />
+      <button className="calculator" onClick={() => setShowCalculator(!showCalculator)}>
+        <img src={calcucatorIcon} alt="Calculator" />
       </button>
       <button className="profile">
         <img src={profile} alt="" />
       </button>
+      {showCalculator && (
+        <div className="calculator-modal">
+          <div className="calculator-overlay" onClick={() => setShowCalculator(false)}></div>
+          <div className="calculator-container">
+            <calculator />
+            <button className="close-btn" onClick={() => setShowCalculator(false)}>×</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

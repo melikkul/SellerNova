@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -7,32 +7,29 @@ import {
   PointElement,
   LineElement,
   Tooltip,
+  Legend,
 } from "chart.js";
 import "./Orders.css";
 
-// Chart.js bileşenlerini kaydediyoruz
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Tooltip
+  Tooltip,
+  Legend
 );
 
 export default function Orders() {
   const [selectedRange, setSelectedRange] = useState("Son 30 Gün");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState(null); // Hover durumunu tutuyoruz
   const [chartData1, setChartData1] = useState(null);
   const [chartData2, setChartData2] = useState(null);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [isCustomDate, setIsCustomDate] = useState(false);
   const [customStartDate, setCustomStartDate] = useState("");
   const [customEndDate, setCustomEndDate] = useState("");
+  const [isCustomDate, setIsCustomDate] = useState(false);
   const today = new Date().toISOString().split("T")[0];
-  const dropdownRef = useRef(null); // Dropdown menü referansı
-  
+  const dropdownRef = useRef(null);
 
   const dateRanges = [
     "Bugün",
@@ -65,10 +62,35 @@ export default function Orders() {
     "Son 3 Ay": ["Son 3 ay", "Geçen yılın aynı 3 ayı"],
     "Son 6 Ay": ["Son 6 ay", "Geçen yılın aynı 6 ayı"],
     "Geçen Yıl": ["Geçen yıl", "Önceki yıl"],
+    Özel: ["Özel tarih aralığı", "Geçen yıl aynı tarih aralığı"],
   };
+
+  const productSalesColors = [
+    "rgba(75, 192, 192, 1)", // Ürün Satışları için renk 1
+    "rgba(54, 162, 235, 1)", // Ürün Satışları için renk 2
+    "rgba(255, 206, 86, 1)", // Ürün Satışları için renk 3
+    "rgba(153, 102, 255, 1)", // Ürün Satışları için renk 4
+  ];
+
+  const orderCountColors = [
+    "rgba(75, 192, 192, 1)", // Ürün Satışları için renk 1
+    "rgba(54, 162, 235, 1)", // Ürün Satışları için renk 2
+    "rgba(255, 206, 86, 1)", // Ürün Satışları için renk 3
+    "rgba(153, 102, 255, 1)", // Ürün Satışları için renk 4
+  ];
 
   const generateRandomData = (length) =>
     Array.from({ length }, () => Math.floor(Math.random() * 15000));
+  const generateRandomData2 = (length, max = 20) =>
+    Array.from({ length }, () => Math.floor(Math.random() * (max + 1)));
+
+
+  const generateRandomColor = () => {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgba(${r}, ${g}, ${b}, 1)`;
+  };
 
   useEffect(() => {
     let labels, dataLength;
@@ -177,26 +199,29 @@ export default function Orders() {
 
   }, [selectedRange, customStartDate, customEndDate]);
 
+  const [legendColors, setLegendColors] = useState([]);
 
-useEffect(() => {
-  function handleClickOutside(event) {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownOpen(false);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
     }
-  }
 
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="orders-graphs-container">
       <h3>Satış</h3>
+      <p className="last-updated">Son Günc.: {today}</p>
 
-      {/* Dropdown Menü */}
-      <div className="dropdown-time">
+      {/* Dropdown */}
+      <div className="dropdown-time" ref={dropdownRef}>
         <button
           className="dropdown-time-button"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -211,14 +236,12 @@ useEffect(() => {
                 key={range}
                 className={`dropdown-time-item ${
                   selectedRange === range ? "selected" : ""
-                } ${
-                  hoveredItem === "Son 30 Gün" && range === "Son 30 Gün"
-                    ? "hovered"
-                    : ""
                 }`}
-                onClick={() => handleSelect(range)}
-                onMouseEnter={() => setHoveredItem(range)}
-                onMouseLeave={() => setHoveredItem(null)}
+                onClick={() => {
+                  setSelectedRange(range);
+                  setIsDropdownOpen(false); // Seçildiğinde menüyü kapat
+                  setIsCustomDate(range === "Özel");
+                }}
               >
                 {range}
               </li>
@@ -227,13 +250,59 @@ useEffect(() => {
         )}
       </div>
 
+      {isCustomDate && (
+        <div className="custom-date-wrapper">
+          <div className="custom-date-container">
+            <input
+              type="date"
+              value={customStartDate}
+              onChange={(e) => setCustomStartDate(e.target.value)}
+              max={customEndDate || today}
+            />
+          </div>
+          <div className="custom-date-container">
+            <input
+              type="date"
+              value={customEndDate}
+              onChange={(e) => setCustomEndDate(e.target.value)}
+              min={customStartDate}
+              max={today}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Göstergeler */}
+      <div className="stats-container">
+        <div className="stat-box">
+          <p className="stat-title">Siparişli Ürün Sayıları</p>
+          <p className="stat-value">$0</p>
+        </div>
+        <div className="stat-box">
+          <p className="stat-title">Ortalama Adet / Sipariş</p>
+          <p className="stat-value">0</p>
+        </div>
+        <div className="stat-box">
+          <p className="stat-title">Ortalama Satış / Sipariş</p>
+          <p className="stat-value">$0</p>
+        </div>
+        <div className="stat-box">
+          <p className="stat-title">Buybox Oranı</p>
+          <p className="stat-value">%69</p>
+        </div>
+      </div>
+
       {/* Grafikler */}
       <div className="charts-container">
         <div className="chart">
           {chartData1 && (
             <Line
               data={chartData1}
-              options={{ responsive: true, maintainAspectRatio: false }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+              }}
             />
           )}
         </div>
@@ -245,6 +314,16 @@ useEffect(() => {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
+                scales: {
+                  y: {
+                    beginAtZero: true, // Y ekseni sıfırdan başlasın
+                    min: 0, // Minimum değer 0
+                    max: 20, // Maksimum değer 20
+                    ticks: {
+                      stepSize: 2, // 2'şer artan aralıklarla göster
+                    },
+                  },
+                },
               }}
             />
           )}
@@ -253,17 +332,13 @@ useEffect(() => {
 
       {/* Renk Açıklamaları Grafiklerin Altında */}
       <div className="comparison-info">
-        {comparisonOptions[selectedRange]?.map((comp, index) => (
-          <p key={index} className="comparison-item">
+        {legendColors.map((item, index) => (
+          <p className="comparison-item" key={index}>
             <span
               className="color-box"
-              style={{
-                backgroundColor: `rgba(${index * 50}, ${200 - index * 30}, ${
-                  index * 70
-                }, 1)`,
-              }}
+              style={{ backgroundColor: item.color }} // Renkler artık datasets1’deki renkler olacak
             ></span>
-            {comp}
+            {item.label}
           </p>
         ))}
       </div>

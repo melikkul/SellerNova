@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -7,32 +7,24 @@ import {
   PointElement,
   LineElement,
   Tooltip,
-  Legend,
 } from "chart.js";
 import "./Orders.css";
 
+// Chart.js bileşenlerini kaydediyoruz
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
-  Tooltip,
-  Legend
+  Tooltip
 );
 
 export default function Orders() {
   const [selectedRange, setSelectedRange] = useState("Bugün");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null); // Hover durumunu tutuyoruz
   const [chartData1, setChartData1] = useState(null);
   const [chartData2, setChartData2] = useState(null);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [isCustomDate, setIsCustomDate] = useState(false);
-  const [customStartDate, setCustomStartDate] = useState("");
-  const [customEndDate, setCustomEndDate] = useState("");
-  const today = new Date().toISOString().split("T")[0];
-  const dropdownRef = useRef(null); // Dropdown menü referansı
-  
 
   const dateRanges = [
     "Bugün",
@@ -43,32 +35,6 @@ export default function Orders() {
     "Geçen Yıl",
     "Özel",
   ];
-
-  const comparisonOptions = {
-    Bugün: [
-      "Bugün şimdiye kadar",
-      "Dün",
-      "Geçen hafta aynı gün",
-      "Geçen yıl aynı gün",
-    ],
-    "Son 7 Gün": [
-      "Son 7 gün",
-      "Geçen hafta aynı 7 gün",
-      "Geçen ayın aynı 7 günü",
-      "Geçen yılın aynı 7 günü",
-    ],
-    "Son 30 Gün": [
-      "Son 30 gün",
-      "Geçen ayın aynı 30 günü",
-      "Geçen yılın aynı 30 günü",
-    ],
-    "Son 3 Ay": ["Son 3 ay", "Geçen yılın aynı 3 ayı"],
-    "Son 6 Ay": ["Son 6 ay", "Geçen yılın aynı 6 ayı"],
-    "Geçen Yıl": ["Geçen yıl", "Önceki yıl"],
-  };
-
-  const generateRandomData = (length) =>
-    Array.from({ length }, () => Math.floor(Math.random() * 15000));
 
   useEffect(() => {
     let labels, dataLength;
@@ -158,27 +124,82 @@ export default function Orders() {
     setChartData2({ labels, datasets: datasets2 });
   }, [selectedRange, customStartDate, customEndDate]);
 
-
-useEffect(() => {
-  function handleClickOutside(event) {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsDropdownOpen(false);
+  useEffect(() => {
+    // Tıklama dışı kontrolü
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
     }
-  }
 
-  document.addEventListener("mousedown", handleClickOutside);
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
+    // Grafik verilerini oluşturma
+    const generateRandomData = () =>
+      Array.from({ length: 7 }, () => Math.floor(Math.random() * 15000));
+
+    setChartData1({
+      labels: [
+        "Pazartesi",
+        "Salı",
+        "Çarşamba",
+        "Perşembe",
+        "Cuma",
+        "Cumartesi",
+        "Pazar",
+      ],
+      datasets: [
+        {
+          label: `Ürün Satışları ($) - ${selectedRange}`,
+          data: generateRandomData(),
+          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          fill: true,
+          tension: 0.4,
+        },
+      ],
+    });
+
+    setChartData2({
+      labels: [
+        "Pazartesi",
+        "Salı",
+        "Çarşamba",
+        "Perşembe",
+        "Cuma",
+        "Cumartesi",
+        "Pazar",
+      ],
+      datasets: [
+        {
+          label: `Sipariş Sayısı - ${selectedRange}`,
+          data: generateRandomData(),
+          borderColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          fill: true,
+          tension: 0.4,
+        },
+      ],
+    });
+
+    // Event listener'ı ekle
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup fonksiyonu
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [selectedRange, customStartDate, customEndDate]); // <-- Buradaki noktalı virgül doğru
+
+  const handleSelect = (range) => {
+    setSelectedRange(range);
+    setIsDropdownOpen(false);
   };
-}, []);
 
   return (
     <div className="orders-graphs-container">
       <h3>Satış</h3>
-      <p className="last-updated">Son Günc.: {today}</p>
 
-      {/* Dropdown */}
-      <div className="dropdown-time" ref={dropdownRef}>
+      {/* Dropdown Menü */}
+      <div className="dropdown-time">
         <button
           className="dropdown-time-button"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -193,12 +214,14 @@ useEffect(() => {
                 key={range}
                 className={`dropdown-time-item ${
                   selectedRange === range ? "selected" : ""
+                } ${
+                  hoveredItem === "Son 30 Gün" && range === "Son 30 Gün"
+                    ? "hovered"
+                    : ""
                 }`}
-                onClick={() => {
-                  setSelectedRange(range);
-                  setIsDropdownOpen(false); // Seçildiğinde menüyü kapat
-                  setIsCustomDate(range === "Özel");
-                }}
+                onClick={() => handleSelect(range)}
+                onMouseEnter={() => setHoveredItem(range)}
+                onMouseLeave={() => setHoveredItem(null)}
               >
                 {range}
               </li>
@@ -207,59 +230,13 @@ useEffect(() => {
         )}
       </div>
 
-      {isCustomDate && (
-        <div className="custom-date-wrapper">
-          <div className="custom-date-container">
-            <input
-              type="date"
-              value={customStartDate}
-              onChange={(e) => setCustomStartDate(e.target.value)}
-              max={customEndDate || today}
-            />
-          </div>
-          <div className="custom-date-container">
-            <input
-              type="date"
-              value={customEndDate}
-              onChange={(e) => setCustomEndDate(e.target.value)}
-              min={customStartDate}
-              max={today}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Göstergeler */}
-      <div className="stats-container">
-        <div className="stat-box">
-          <p className="stat-title">Siparişli Ürün Sayıları</p>
-          <p className="stat-value">$0</p>
-        </div>
-        <div className="stat-box">
-          <p className="stat-title">Ortalama Adet / Sipariş</p>
-          <p className="stat-value">0</p>
-        </div>
-        <div className="stat-box">
-          <p className="stat-title">Ortalama Satış / Sipariş</p>
-          <p className="stat-value">$0</p>
-        </div>
-        <div className="stat-box">
-          <p className="stat-title">Buybox Oranı</p>
-          <p className="stat-value">%69</p>
-        </div>
-      </div>
-
       {/* Grafikler */}
       <div className="charts-container">
         <div className="chart">
           {chartData1 && (
             <Line
               data={chartData1}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-              }}
+              options={{ responsive: true, maintainAspectRatio: false }}
             />
           )}
         </div>
@@ -267,31 +244,10 @@ useEffect(() => {
           {chartData2 && (
             <Line
               data={chartData2}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-              }}
+              options={{ responsive: true, maintainAspectRatio: false }}
             />
           )}
         </div>
-      </div>
-
-      {/* Renk Açıklamaları Grafiklerin Altında */}
-      <div className="comparison-info">
-        {comparisonOptions[selectedRange]?.map((comp, index) => (
-          <p key={index} className="comparison-item">
-            <span
-              className="color-box"
-              style={{
-                backgroundColor: `rgba(${index * 50}, ${200 - index * 30}, ${
-                  index * 70
-                }, 1)`,
-              }}
-            ></span>
-            {comp}
-          </p>
-        ))}
       </div>
     </div>
   );

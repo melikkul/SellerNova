@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./Slidebar.css";
 import Order_icon from "../assets/order-icon.svg";
-import Inventory_icon from "../assets/Inventory-icon.svg";
-import Security_icon from "../assets/Security-icon.svg";
-import Store_icon from "../assets/Store-icon.svg";
-import Reports_icon from "../assets/Reports-icon.svg";
+import Inventory_icon from "../assets/inventory-icon.svg";
+import Security_icon from "../assets/security-icon.svg";
+import Store_icon from "../assets/store-icon.svg";
+import Reports_icon from "../assets/reports-icon.svg";
 import NovaBridge_icon from "../assets/NovaBridge-icon.svg";
-import Warehouse_icon from "../assets/Warehouse-icon.svg";
+import Warehouse_icon from "../assets/warehouse-icon.svg";
 import Slidebar_close from "../assets/Slidebar-close.svg";
 
 export default function Slidebar({ navbarHeight, setSlidebarWidth }) {

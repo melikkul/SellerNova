@@ -21,15 +21,18 @@ ChartJS.register(
 );
 
 export default function Orders() {
-  const [selectedRange, setSelectedRange] = useState("Son 30 Gün");
+  const [selectedRange, setSelectedRange] = useState("Bugün");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [chartData1, setChartData1] = useState(null);
   const [chartData2, setChartData2] = useState(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [isCustomDate, setIsCustomDate] = useState(false);
   const [customStartDate, setCustomStartDate] = useState("");
   const [customEndDate, setCustomEndDate] = useState("");
-  const [isCustomDate, setIsCustomDate] = useState(false);
   const today = new Date().toISOString().split("T")[0];
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef(null); // Dropdown menü referansı
+  
 
   const dateRanges = [
     "Bugün",
@@ -62,56 +65,29 @@ export default function Orders() {
     "Son 3 Ay": ["Son 3 ay", "Geçen yılın aynı 3 ayı"],
     "Son 6 Ay": ["Son 6 ay", "Geçen yılın aynı 6 ayı"],
     "Geçen Yıl": ["Geçen yıl", "Önceki yıl"],
-    Özel: ["Özel tarih aralığı", "Geçen yıl aynı tarih aralığı"],
   };
-
-  const productSalesColors = [
-    "rgba(75, 192, 192, 1)", // Ürün Satışları için renk 1
-    "rgba(54, 162, 235, 1)", // Ürün Satışları için renk 2
-    "rgba(255, 206, 86, 1)", // Ürün Satışları için renk 3
-    "rgba(153, 102, 255, 1)", // Ürün Satışları için renk 4
-  ];
-
-  const orderCountColors = [
-    "rgba(75, 192, 192, 1)", // Ürün Satışları için renk 1
-    "rgba(54, 162, 235, 1)", // Ürün Satışları için renk 2
-    "rgba(255, 206, 86, 1)", // Ürün Satışları için renk 3
-    "rgba(153, 102, 255, 1)", // Ürün Satışları için renk 4
-  ];
 
   const generateRandomData = (length) =>
     Array.from({ length }, () => Math.floor(Math.random() * 15000));
-  const generateRandomData2 = (length, max = 20) =>
-    Array.from({ length }, () => Math.floor(Math.random() * (max + 1)));
-
-
-  const generateRandomColor = () => {
-    const r = Math.floor(Math.random() * 256);
-    const g = Math.floor(Math.random() * 256);
-    const b = Math.floor(Math.random() * 256);
-    return `rgba(${r}, ${g}, ${b}, 1)`;
-  };
 
   useEffect(() => {
     let labels, dataLength;
     let datasets1 = [];
     let datasets2 = [];
-    let legendColors = [];
 
-    if (selectedRange === "Bugün") {
-      dataLength = 24;
-      labels = Array.from({ length: dataLength }, (_, i) => `${i}:00`);
-    } else if (selectedRange === "Özel" && customStartDate && customEndDate) {
+    if (selectedRange === "Özel" && customStartDate && customEndDate) {
+      // Özel tarih aralığında kaç gün var hesaplanıyor
       const start = new Date(customStartDate);
       const end = new Date(customEndDate);
       const diffTime = Math.abs(end - start);
-      dataLength = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+      dataLength = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // Gün farkı +1 ekliyoruz
       labels = Array.from({ length: dataLength }, (_, i) => {
         const date = new Date(start);
         date.setDate(date.getDate() + i);
-        return date.toISOString().split("T")[0];
+        return date.toISOString().split("T")[0]; // YYYY-MM-DD formatı
       });
     } else {
+      // Önceden tanımlı tarih aralıkları için
       switch (selectedRange) {
         case "Son 7 Gün":
           dataLength = 7;
@@ -134,86 +110,67 @@ export default function Orders() {
       labels = Array.from({ length: dataLength }, (_, i) => `Gün ${i + 1}`);
     }
 
-    const productSalesColor = generateRandomColor();
-    const orderCountColor = generateRandomColor();
-
+    // Ana grafik verisi
     datasets1.push({
       label: `Ürün Satışları - ${selectedRange}`,
       data: generateRandomData(dataLength),
-      borderColor: productSalesColors[0], // İlk renk kullanılıyor
-      backgroundColor: productSalesColors[0].replace("1)", "0.2)"), // Şeffaf versiyon
+      borderColor: "rgba(75, 192, 192, 1)",
+      backgroundColor: "rgba(75, 192, 192, 0.2)",
       fill: false,
       tension: 0.4,
     });
 
     datasets2.push({
       label: `Sipariş Sayısı - ${selectedRange}`,
-      data: generateRandomData2(dataLength),
-      borderColor: orderCountColors[0], // İlk renk kullanılıyor
-      backgroundColor: orderCountColors[0].replace("1)", "0.2)"),
+      data: generateRandomData(dataLength),
+      borderColor: "rgba(255, 99, 132, 1)",
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
       fill: false,
       tension: 0.4,
     });
 
+    // **Diğer çizgiler (karşılaştırma verileri) geri eklendi**
+    if (comparisonOptions[selectedRange]) {
+      comparisonOptions[selectedRange].forEach((comp, index) => {
+        datasets1.push({
+          label: comp,
+          data: generateRandomData(dataLength),
+          borderColor: `rgba(${index * 50}, ${200 - index * 30}, ${
+            index * 70
+          }, 1)`,
+          fill: false,
+          tension: 0.4,
+        });
 
-
-   if (comparisonOptions[selectedRange]) {
-     comparisonOptions[selectedRange].forEach((comp, index) => {
-       const productComparisonColor =
-         productSalesColors[index % productSalesColors.length];
-       const orderComparisonColor =
-         orderCountColors[index % orderCountColors.length];
-
-       datasets1.push({
-         label: comp,
-         data: generateRandomData(dataLength),
-         borderColor: productComparisonColor,
-         fill: false,
-         tension: 0.4,
-       });
-
-       datasets2.push({
-         label: comp,
-         data: generateRandomData2(dataLength),
-         borderColor: orderComparisonColor,
-         fill: false,
-         tension: 0.4,
-       });
-
-       // Her karşılaştırma için sadece bir legend ekliyoruz (Ürün Satışları + Sipariş Sayısı)
-       legendColors.push(
-         { label: `${comp}`, color: productComparisonColor }
-       );
-     });
-   }
+        datasets2.push({
+          label: comp,
+          data: generateRandomData(dataLength),
+          borderColor: `rgba(${index * 70}, ${index * 50}, ${
+            200 - index * 30
+          }, 1)`,
+          fill: false,
+          tension: 0.4,
+        });
+      });
+    }
 
     setChartData1({ labels, datasets: datasets1 });
     setChartData2({ labels, datasets: datasets2 });
-
-    setLegendColors(
-      datasets1.map((dataset, index) => ({
-        label: dataset.label,
-        color: productSalesColors[index % productSalesColors.length], // Burada manuel olarak belirlediğiniz renkten alıyoruz
-      }))
-    );
-
   }, [selectedRange, customStartDate, customEndDate]);
 
-  const [legendColors, setLegendColors] = useState([]);
 
-
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
+useEffect(() => {
+  function handleClickOutside(event) {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
     }
+  }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
   return (
     <div className="orders-graphs-container">
@@ -314,16 +271,6 @@ export default function Orders() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
-                scales: {
-                  y: {
-                    beginAtZero: true, // Y ekseni sıfırdan başlasın
-                    min: 0, // Minimum değer 0
-                    max: 20, // Maksimum değer 20
-                    ticks: {
-                      stepSize: 2, // 2'şer artan aralıklarla göster
-                    },
-                  },
-                },
               }}
             />
           )}
@@ -332,13 +279,17 @@ export default function Orders() {
 
       {/* Renk Açıklamaları Grafiklerin Altında */}
       <div className="comparison-info">
-        {legendColors.map((item, index) => (
-          <p className="comparison-item" key={index}>
+        {comparisonOptions[selectedRange]?.map((comp, index) => (
+          <p key={index} className="comparison-item">
             <span
               className="color-box"
-              style={{ backgroundColor: item.color }} // Renkler artık datasets1’deki renkler olacak
+              style={{
+                backgroundColor: `rgba(${index * 50}, ${200 - index * 30}, ${
+                  index * 70
+                }, 1)`,
+              }}
             ></span>
-            {item.label}
+            {comp}
           </p>
         ))}
       </div>
